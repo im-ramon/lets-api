@@ -15,17 +15,34 @@ datasource db {
 model User {
     id         String    @id @default(uuid())
     name       String?
-    email      String    @unique
     password   String
     created_at DateTime? @default(now())
     updated_at DateTime? @default(now())
-    role       Role      @default(USER)
+    user_data  UserData?
 
     @@map("users")
 }
 
-enum Role {
-    DEV
-    ADMIN
-    USER
+model UserData {
+    id                    String    @id @default(uuid())
+    user_id               String    @unique
+    last_consumption      DateTime
+    record_no_consumption Int
+    total_relapse         Int
+    score                 Int
+    reason_relapse        String
+    reason_dates          String
+    created_at            DateTime? @default(now())
+    updated_at            DateTime? @default(now())
+    user                  User      @relation(fields: [user_id], references: [id])
+
+    @@map("user_data")
+}
+
+model RelapseComments {
+    id         String    @id @default(uuid())
+    comment    String
+    created_at DateTime? @default(now())
+
+    @@map("relapse_comments")
 }

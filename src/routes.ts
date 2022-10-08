@@ -7,6 +7,6 @@ import { isAuth } from './middlewares/isAuth'
 
 export const router = Router()
 
-router.post('/users', new CreateUserController().handle)
-router.post('/login', new AuthUserController().handle)
+router.post('/create_user', new CreateUserController().handle)
+router.post('/auth_user', new AuthUserController().handle)
 router.get('/me', isAuth, new DatailsUserController().handle)

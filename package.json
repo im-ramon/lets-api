@@ -2,7 +2,7 @@
     "name": "lets-api",
     "version": "1.0.0",
     "description": "",
-    "main": "server.js",
+    "main": "src/server.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "ts-node-dev src/server.ts",
