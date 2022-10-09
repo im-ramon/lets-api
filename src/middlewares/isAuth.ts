@@ -21,7 +21,7 @@ export function isAuth(req: Request, res: Response, next: NextFunction) {
         // Valida o token
         const { sub } = verify(token, process.env.JWT_SECRET) as PayLoad;
 
-        // Recupara Id Token
+        // Recupara Id Token e coloca em uma variável no request
         req.user_id = sub;
 
         return next()
