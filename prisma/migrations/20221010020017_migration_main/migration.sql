@@ -11,14 +11,14 @@ CREATE TABLE `users` (
 
 -- CreateTable
 CREATE TABLE `user_data` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `user_id` VARCHAR(191) NOT NULL,
     `last_consumption` DATETIME(3) NOT NULL,
     `record_no_consumption` INTEGER NOT NULL,
     `total_relapse` INTEGER NOT NULL,
     `score` INTEGER NOT NULL,
-    `reason_relapse` VARCHAR(191) NOT NULL,
-    `reason_dates` VARCHAR(191) NOT NULL,
+    `relapse_reasons` VARCHAR(191) NOT NULL,
+    `relapse_dates` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
 

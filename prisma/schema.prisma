@@ -24,14 +24,14 @@ model User {
 }
 
 model UserData {
-    id                    String    @id @default(uuid())
+    id                    Int       @id @default(autoincrement())
     user_id               String    @unique
     last_consumption      DateTime
     record_no_consumption Int
     total_relapse         Int
     score                 Int
-    reason_relapse        String
-    reason_dates          String
+    relapse_reasons       String
+    relapse_dates         String
     created_at            DateTime? @default(now())
     updated_at            DateTime? @default(now())
     user                  User      @relation(fields: [user_id], references: [id])
