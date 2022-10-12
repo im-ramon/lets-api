@@ -2,7 +2,7 @@ import prismaClient from '../../prisma'
 
 type SetUserDataProps = {
     user_id: string,
-    last_consumption: Date,
+    last_consumption: string,
     record_no_consumption: number,
     total_relapse: number,
     score: number,
