@@ -20,6 +20,7 @@ class SetUserDataService {
                 record_no_consumption,
                 total_relapse,
                 score,
+                last_score_update: last_consumption, // Configura a última atualização do score como último consumo inicial
                 relapse_reasons,
                 relapse_dates
             },
