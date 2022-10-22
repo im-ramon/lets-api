@@ -32,8 +32,7 @@ model UserData {
     total_relapse         Int
     score                 Int
     last_score_update     String?
-    relapse_reasons       String
-    relapse_dates         String
+    relapse_dates         String    @db.VarChar(8000)
     created_at            DateTime? @default(now())
     updated_at            DateTime? @default(now())
     user                  User      @relation(fields: [user_id], references: [id])
@@ -41,10 +40,11 @@ model UserData {
     @@map("user_data")
 }
 
-model RelapseComments {
-    id         String    @id @default(uuid())
-    comment    String
+model RelapseReasons {
+    id         Int       @id @default(autoincrement())
+    user_id    String
+    reason     String
     created_at DateTime? @default(now())
 
-    @@map("relapse_comments")
+    @@map("relapse_reasons")
 }

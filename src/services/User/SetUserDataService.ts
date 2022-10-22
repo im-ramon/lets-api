@@ -16,15 +16,13 @@ class SetUserDataService {
                 total_relapse: 0,
                 score: 5,
                 last_score_update: last_consumption, // Configura a última atualização do score como último consumo inicial
-                relapse_reasons: '-',
-                relapse_dates: '-'
+                relapse_dates: '[]',
             },
             select: {
                 last_consumption: true,
                 last_score_update: true,
                 record_no_consumption: true,
                 relapse_dates: true,
-                relapse_reasons: true,
                 total_relapse: true,
                 score: true,
             }

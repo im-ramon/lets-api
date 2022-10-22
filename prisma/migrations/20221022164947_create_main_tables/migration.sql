@@ -18,8 +18,7 @@ CREATE TABLE `user_data` (
     `total_relapse` INTEGER NOT NULL,
     `score` INTEGER NOT NULL,
     `last_score_update` VARCHAR(191) NULL,
-    `relapse_reasons` VARCHAR(191) NOT NULL,
-    `relapse_dates` VARCHAR(191) NOT NULL,
+    `relapse_dates` VARCHAR(8000) NOT NULL,
     `created_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
 
@@ -28,9 +27,10 @@ CREATE TABLE `user_data` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `relapse_comments` (
-    `id` VARCHAR(191) NOT NULL,
-    `comment` VARCHAR(191) NOT NULL,
+CREATE TABLE `relapse_reasons` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `user_id` VARCHAR(191) NOT NULL,
+    `reason` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
