@@ -19,7 +19,7 @@ class AlterScoreService {
         })
 
         if (handleType === 'add') {
-            const isThisRequestAfterToday = moment('2022-10-21').isAfter(scoreInfo.last_score_update, 'day');
+            const isThisRequestAfterToday = moment().isAfter(scoreInfo.last_score_update, 'day');
 
             if (isThisRequestAfterToday) {
                 const newScore = await prismaClient.userData.update({
