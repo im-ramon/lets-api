@@ -19,9 +19,9 @@ class AlterScoreService {
         })
 
         if (handleType === 'add') {
-            const isThisRequestAfterToday = moment().isAfter(scoreInfo.last_score_update, 'day');
+            const isThisRequestAfterTheLastConsumption = moment().isAfter(scoreInfo.last_score_update, 'day');
 
-            if (isThisRequestAfterToday) {
+            if (isThisRequestAfterTheLastConsumption) {
                 const newScore = await prismaClient.userData.update({
                     data: {
                         score: scoreInfo.score + 5,
