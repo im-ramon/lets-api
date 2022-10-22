@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { DatailsUserService } from '../../services/users/DatailsUserService'
+import { DatailsUserService } from '../../services/User/DatailsUserService'
 
 class DatailsUserController {
     async handle(req: Request, res: Response) {

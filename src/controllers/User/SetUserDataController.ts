@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { SetUserDataService } from '../../services/users/SetUserDataService'
+import { SetUserDataService } from '../../services/User/SetUserDataService'
 
 class SetUserDataController {
     async handle(req: Request, res: Response) {

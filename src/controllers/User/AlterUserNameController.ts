@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { AlterUserNameService } from '../../services/users/AlterUserNameService'
+import { AlterUserNameService } from '../../services/User/AlterUserNameService'
 
 class AlterUserNameController {
     async handle(req: Request, res: Response) {
