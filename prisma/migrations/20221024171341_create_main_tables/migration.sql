@@ -15,6 +15,7 @@ CREATE TABLE `user_data` (
     `user_id` VARCHAR(191) NOT NULL,
     `last_consumption` VARCHAR(191) NOT NULL,
     `record_no_consumption` INTEGER NOT NULL,
+    `record_no_consumption_formated` VARCHAR(191) NOT NULL,
     `total_relapse` INTEGER NOT NULL,
     `score` INTEGER NOT NULL,
     `last_score_update` VARCHAR(191) NULL,

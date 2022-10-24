@@ -25,17 +25,18 @@ model User {
 }
 
 model UserData {
-    id                    Int       @id @default(autoincrement())
-    user_id               String    @unique
-    last_consumption      String
-    record_no_consumption Int
-    total_relapse         Int
-    score                 Int
-    last_score_update     String?
-    relapse_dates         String    @db.VarChar(8000)
-    created_at            DateTime? @default(now())
-    updated_at            DateTime? @default(now())
-    user                  User      @relation(fields: [user_id], references: [id])
+    id                             Int       @id @default(autoincrement())
+    user_id                        String    @unique
+    last_consumption               String
+    record_no_consumption          Int
+    record_no_consumption_formated String
+    total_relapse                  Int
+    score                          Int
+    last_score_update              String?
+    relapse_dates                  String    @db.VarChar(8000)
+    created_at                     DateTime? @default(now())
+    updated_at                     DateTime? @default(now())
+    user                           User      @relation(fields: [user_id], references: [id])
 
     @@map("user_data")
 }

@@ -4,11 +4,12 @@ import prismaClient from '../../prisma'
 type RestartStopwatchProps = {
     user_id: string;
     last_consumption: string;
+    record_no_consumption_formated: string;
     relapse_reasons: string;
 }
 
 class RestartStopwatchService {
-    async execute({ user_id, last_consumption, relapse_reasons }: RestartStopwatchProps) {
+    async execute({ user_id, last_consumption, relapse_reasons, record_no_consumption_formated }: RestartStopwatchProps) {
         const userInfo = await prismaClient.userData.findFirst({
             where: {
                 user_id
@@ -17,6 +18,7 @@ class RestartStopwatchService {
                 user_id: true,
                 last_consumption: true,
                 record_no_consumption: true,
+                record_no_consumption_formated: true,
                 total_relapse: true,
                 relapse_dates: true,
             }
@@ -25,7 +27,18 @@ class RestartStopwatchService {
         // Definindo quantidade de segundos desde último consumo 
         const recordInSeconds = () => {
             const diff = moment(last_consumption).diff(userInfo.last_consumption, 'seconds')
-            return (diff > userInfo.record_no_consumption ? diff : userInfo.record_no_consumption)
+
+            if (diff > userInfo.record_no_consumption) {
+                return {
+                    record_no_consumption: diff,
+                    record_no_consumption_formated
+                }
+            } else {
+                return {
+                    record_no_consumption: userInfo.record_no_consumption,
+                    record_no_consumption_formated: userInfo.record_no_consumption_formated
+                }
+            }
         }
 
         const totalRelapseCalc = () => {
@@ -47,8 +60,9 @@ class RestartStopwatchService {
             data: {
                 last_consumption,
                 total_relapse: totalRelapseCalc(),
-                record_no_consumption: recordInSeconds(),
-                relapse_dates: relapseDates()
+                record_no_consumption: recordInSeconds().record_no_consumption,
+                relapse_dates: relapseDates(),
+                record_no_consumption_formated: recordInSeconds().record_no_consumption_formated
             },
             where: {
                 user_id
@@ -57,7 +71,8 @@ class RestartStopwatchService {
                 last_consumption: true,
                 record_no_consumption: true,
                 total_relapse: true,
-                relapse_dates: true
+                relapse_dates: true,
+                record_no_consumption_formated: true
             }
         })
 
