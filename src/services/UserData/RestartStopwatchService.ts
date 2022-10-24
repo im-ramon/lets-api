@@ -21,6 +21,7 @@ class RestartStopwatchService {
                 record_no_consumption_formated: true,
                 total_relapse: true,
                 relapse_dates: true,
+                score: true
             }
         })
 
@@ -56,13 +57,22 @@ class RestartStopwatchService {
             return JSON.stringify(relapse)
         }
 
+        const newScore = () => {
+            if (userInfo.score <= 40) {
+                return 0
+            } else {
+                return (userInfo.score - 40)
+            }
+        }
+
         const lastConsumptionUpdated = await prismaClient.userData.update({
             data: {
                 last_consumption,
                 total_relapse: totalRelapseCalc(),
                 record_no_consumption: recordInSeconds().record_no_consumption,
                 relapse_dates: relapseDates(),
-                record_no_consumption_formated: recordInSeconds().record_no_consumption_formated
+                record_no_consumption_formated: recordInSeconds().record_no_consumption_formated,
+                score: newScore()
             },
             where: {
                 user_id
@@ -72,7 +82,8 @@ class RestartStopwatchService {
                 record_no_consumption: true,
                 total_relapse: true,
                 relapse_dates: true,
-                record_no_consumption_formated: true
+                record_no_consumption_formated: true,
+                score: true
             }
         })
 

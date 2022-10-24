@@ -71,8 +71,6 @@ class AlterScoreService {
                 })
                 return { newScore }
             }
-
-
         }
     }
 }
