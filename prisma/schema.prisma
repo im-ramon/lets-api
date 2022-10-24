@@ -42,10 +42,10 @@ model UserData {
 }
 
 model RelapseReasons {
-    id         Int       @id @default(autoincrement())
+    id         Int    @id @default(autoincrement())
     user_id    String
     reason     String
-    created_at DateTime? @default(now())
+    created_at String
 
     @@map("relapse_reasons")
 }

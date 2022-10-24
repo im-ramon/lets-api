@@ -81,7 +81,8 @@ class RestartStopwatchService {
             await prismaClient.relapseReasons.create({
                 data: {
                     user_id,
-                    reason: relapse_reasons
+                    reason: relapse_reasons,
+                    created_at: last_consumption
                 }
             })
         }
