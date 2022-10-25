@@ -54,7 +54,8 @@ class RestartStopwatchService {
             let relapse = JSON.parse(userInfo.relapse_dates)
             relapse.push(moment(last_consumption).format('YYYY-MM-DD'))
 
-            return JSON.stringify(relapse)
+            const arrFiltered = [...new Set(relapse)]
+            return JSON.stringify(arrFiltered)
         }
 
         const newScore = () => {
