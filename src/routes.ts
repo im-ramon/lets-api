@@ -6,6 +6,7 @@ import { DatailsUserController } from './controllers/User/DatailsUserController'
 import { GetUserDataController } from './controllers/User/GetUserDataController'
 import { SetUserDataController } from './controllers/User/SetUserDataController'
 import { AlterUserNameController } from './controllers/User/AlterUserNameController'
+import { AlterScoreController } from './controllers/UserData/AlterScoreController'
 import { RestartStopwatchController } from './controllers/UserData/RestartStopwatchController'
 import { GetUserRelapseReasonsController } from './controllers/RelapseReasons/GetUserRelapseReasonsController'
 import { isAuth } from './middlewares/isAuth'
@@ -21,7 +22,7 @@ router.patch('/alter_user_name', isAuth, new AlterUserNameController().handle)
 router.get('/me', isAuth, new DatailsUserController().handle)
 
 // Rotas 'user_data'
-router.patch('/alter_score', isAuth, new RestartStopwatchController().handle)
+router.patch('/alter_score', isAuth, new AlterScoreController().handle)
 router.post('/restart_stopwatch', isAuth, new RestartStopwatchController().handle)
 
 // Rotas relapse_reasons

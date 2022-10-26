@@ -32,10 +32,11 @@ class AlterScoreService {
                     },
                     select: {
                         user_id: true,
-                        score: true
+                        score: true,
+                        last_score_update: true
                     }
                 })
-                return { newScore }
+                return { ...newScore }
             } else {
                 throw new Error(`Pontos já resgatados hoje!`)
             }
@@ -52,10 +53,11 @@ class AlterScoreService {
                     },
                     select: {
                         user_id: true,
-                        score: true
+                        score: true,
+                        last_score_update: true
                     }
                 })
-                return { newScore }
+                return { ...newScore }
             } else {
                 const newScore = await prismaClient.userData.update({
                     data: {
@@ -66,10 +68,11 @@ class AlterScoreService {
                     },
                     select: {
                         user_id: true,
-                        score: true
+                        score: true,
+                        last_score_update: true
                     }
                 })
-                return { newScore }
+                return { ...newScore }
             }
         }
     }
