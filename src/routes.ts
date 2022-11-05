@@ -10,6 +10,7 @@ import { AlterScoreController } from './controllers/UserData/AlterScoreControlle
 import { RestartStopwatchController } from './controllers/UserData/RestartStopwatchController'
 import { GetUserRelapseReasonsController } from './controllers/RelapseReasons/GetUserRelapseReasonsController'
 import { SetPushTokenController } from './controllers/PushTokens/SetPushTokenController'
+import { SendPushNotificationController } from './controllers/PushTokens/SendPushNotificationController'
 import { isAuth } from './middlewares/isAuth'
 
 export const router = Router()
@@ -31,3 +32,4 @@ router.get('/relapse_reasons', isAuth, new GetUserRelapseReasonsController().han
 
 // Rotas push_tokens
 router.post('/push_tokens', isAuth, new SetPushTokenController().handle)
+router.post('/send_push_notification', new SendPushNotificationController().handle)

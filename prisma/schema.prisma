@@ -57,3 +57,12 @@ model PushTokens {
 
     @@map("push_tokens")
 }
+
+// create_table_app_constantes
+model AppConstants {
+    id         Int    @id @default(autoincrement())
+    rootAccess String
+    users      String
+
+    @@map("app_constants")
+}
