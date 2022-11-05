@@ -49,3 +49,11 @@ model RelapseReasons {
 
     @@map("relapse_reasons")
 }
+
+// create_table_push_tokens
+model PushTokens {
+    id    Int    @id @default(autoincrement())
+    token String @unique
+
+    @@map("push_tokens")
+}

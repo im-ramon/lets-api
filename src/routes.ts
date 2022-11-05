@@ -9,6 +9,7 @@ import { AlterUserNameController } from './controllers/User/AlterUserNameControl
 import { AlterScoreController } from './controllers/UserData/AlterScoreController'
 import { RestartStopwatchController } from './controllers/UserData/RestartStopwatchController'
 import { GetUserRelapseReasonsController } from './controllers/RelapseReasons/GetUserRelapseReasonsController'
+import { SetPushTokenController } from './controllers/PushTokens/SetPushTokenController'
 import { isAuth } from './middlewares/isAuth'
 
 export const router = Router()
@@ -27,3 +28,6 @@ router.post('/restart_stopwatch', isAuth, new RestartStopwatchController().handl
 
 // Rotas relapse_reasons
 router.get('/relapse_reasons', isAuth, new GetUserRelapseReasonsController().handle)
+
+// Rotas push_tokens
+router.post('/push_tokens', isAuth, new SetPushTokenController().handle)
