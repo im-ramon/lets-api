@@ -60,9 +60,10 @@ model PushTokens {
 
 // create_table_app_constantes
 model AppConstants {
-    id         Int    @id @default(autoincrement())
-    rootAccess String
-    users      String
+    id                   Int    @id @default(autoincrement())
+    rootAccess           String
+    users                String
+    lastPushNotification String
 
     @@map("app_constants")
 }

@@ -11,6 +11,7 @@ import { RestartStopwatchController } from './controllers/UserData/RestartStopwa
 import { GetUserRelapseReasonsController } from './controllers/RelapseReasons/GetUserRelapseReasonsController'
 import { SetPushTokenController } from './controllers/PushTokens/SetPushTokenController'
 import { SendPushNotificationController } from './controllers/PushTokens/SendPushNotificationController'
+import { GetAllStatisticsController } from './controllers/Statistics/GetAllStatisticsController'
 import { isAuth } from './middlewares/isAuth'
 
 export const router = Router()
@@ -33,3 +34,6 @@ router.get('/relapse_reasons', isAuth, new GetUserRelapseReasonsController().han
 // Rotas push_tokens
 router.post('/push_tokens', isAuth, new SetPushTokenController().handle)
 router.post('/send_push_notification', new SendPushNotificationController().handle)
+
+// Rotas statistics
+router.post('/statistics', new GetAllStatisticsController().handle)

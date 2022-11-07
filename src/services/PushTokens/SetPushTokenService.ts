@@ -27,7 +27,7 @@ class SetPushTokenService {
             }
 
         } catch (e) {
-            throw new Error('Falha ao salvar exponent_push_token')
+            throw new Error('Falha ao salvar exponent_push_token: ' + e)
         }
     }
 }

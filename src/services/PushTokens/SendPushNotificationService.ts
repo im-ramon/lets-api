@@ -1,6 +1,7 @@
 import prismaClient from '../../prisma'
 import { Expo } from 'expo-server-sdk';
 import { compare } from 'bcryptjs'
+import moment from 'moment';
 
 class SendPushNotificationService {
     async execute(user: string, password: string, title: string, body: string, data?: string) {
@@ -17,6 +18,19 @@ class SendPushNotificationService {
 
         if (passwordMatch && userMatch) {
             try {
+
+                const lastPushNotification = await prismaClient.appConstants.findFirst({
+                    select: {
+                        lastPushNotification: true
+                    }
+                })
+
+                const diffOfLastPushNotificationInSeconds = moment().diff(lastPushNotification.lastPushNotification, 'seconds')
+
+                if (diffOfLastPushNotificationInSeconds < 3600) {
+                    throw new Error('Volte em 1 hora')
+                }
+
                 const userTokens = await prismaClient.pushTokens.findMany({
                     select: { token: true }
                 })
@@ -64,6 +78,14 @@ class SendPushNotificationService {
                     }
                 })();
 
+                await prismaClient.appConstants.update({
+                    data: {
+                        lastPushNotification: moment().format()
+                    },
+                    where: {
+                        id: 1
+                    }
+                })
 
                 return {
                     message: 'Notificações enviadas!',
