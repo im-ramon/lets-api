@@ -32,7 +32,7 @@ router.post('/restart_stopwatch', isAuth, new RestartStopwatchController().handl
 router.get('/relapse_reasons', isAuth, new GetUserRelapseReasonsController().handle)
 
 // Rotas push_tokens
-router.post('/push_tokens', isAuth, new SetPushTokenController().handle)
+router.post('/push_tokens', new SetPushTokenController().handle)
 router.post('/send_push_notification', new SendPushNotificationController().handle)
 
 // Rotas statistics
