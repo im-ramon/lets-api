@@ -11,7 +11,7 @@ datasource db {
 }
 
 // Criando uma migration: npx prisma migrate dev
-// create-main-tables
+// create_main_tables
 
 model User {
     id         String    @id @default(uuid())
@@ -50,7 +50,6 @@ model RelapseReasons {
     @@map("relapse_reasons")
 }
 
-// create_table_push_tokens
 model PushTokens {
     id    Int    @id @default(autoincrement())
     token String @unique
@@ -58,12 +57,20 @@ model PushTokens {
     @@map("push_tokens")
 }
 
-// create_table_app_constantes
 model AppConstants {
-    id                   Int    @id @default(autoincrement())
-    rootAccess           String
-    users                String
-    lastPushNotification String
+    id                     Int    @id @default(autoincrement())
+    root_access            String
+    users                  String
+    last_push_notification String
 
     @@map("app_constants")
 }
+
+// BREAK DATABASE
+// USE lojababybaby;
+// DROP TABLE `push_tokens`;
+// DROP TABLE `app_constants`;
+// DROP TABLE `relapse_reasons`;
+// DROP TABLE `user_data`;
+// DROP TABLE `users`;
+// DROP TABLE `_prisma_migrations`;

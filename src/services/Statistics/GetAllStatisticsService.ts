@@ -6,11 +6,11 @@ class GetAllStatisticsService {
 
         const userTokens = await prismaClient.appConstants.findFirst({
             select: {
-                rootAccess: true,
+                root_access: true,
                 users: true
             }
         })
-        const passwordMatch = await compare(password, userTokens.rootAccess)
+        const passwordMatch = await compare(password, userTokens.root_access)
         const userMatch = userTokens.users === user
 
         if (passwordMatch && userMatch) {

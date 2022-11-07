@@ -7,25 +7,32 @@ class SendPushNotificationService {
     async execute(user: string, password: string, title: string, body: string, data?: string) {
 
         const userTokens = await prismaClient.appConstants.findFirst({
+            where: {
+                id: 1
+            },
             select: {
-                rootAccess: true,
-                users: true
+                root_access: true,
+                users: true,
+                last_push_notification: true
             }
         })
 
-        const passwordMatch = await compare(password, userTokens.rootAccess)
+        const passwordMatch = await compare(password, userTokens.root_access)
         const userMatch = userTokens.users === user
 
         if (passwordMatch && userMatch) {
             try {
 
-                const lastPushNotification = await prismaClient.appConstants.findFirst({
+                const lastPushNotificationInDB = await prismaClient.appConstants.findFirst({
+                    where: {
+                        id: 1
+                    },
                     select: {
-                        lastPushNotification: true
+                        last_push_notification: true
                     }
                 })
 
-                const diffOfLastPushNotificationInSeconds = moment().diff(lastPushNotification.lastPushNotification, 'seconds')
+                const diffOfLastPushNotificationInSeconds = moment().diff(lastPushNotificationInDB.last_push_notification, 'seconds')
 
                 if (diffOfLastPushNotificationInSeconds < 3600) {
                     throw new Error('Volte em 1 hora')
@@ -80,7 +87,7 @@ class SendPushNotificationService {
 
                 await prismaClient.appConstants.update({
                     data: {
-                        lastPushNotification: moment().format()
+                        last_push_notification: moment().format()
                     },
                     where: {
                         id: 1
@@ -92,7 +99,7 @@ class SendPushNotificationService {
                     total: messages.length
                 }
             } catch (e) {
-                throw new Error('Falha ao recuperar exponent_push_token')
+                throw new Error(e)
             }
         } else {
             throw new Error('Usuário/ senha incorreto(s)')
