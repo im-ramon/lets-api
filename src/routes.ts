@@ -33,7 +33,7 @@ router.get('/relapse_reasons', isAuth, new GetUserRelapseReasonsController().han
 
 // Rotas push_tokens
 router.post('/push_tokens', new SetPushTokenController().handle)
-router.post('/send_push_notification', new SendPushNotificationController().handle)
+router.post('/send_push_notification', isAuth, new SendPushNotificationController().handle)
 
 // Rotas statistics
-router.post('/statistics', new GetAllStatisticsController().handle)
+router.post('/statistics', isAuth, new GetAllStatisticsController().handle)

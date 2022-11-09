@@ -2,18 +2,8 @@ import prismaClient from '../../prisma'
 import { compare } from 'bcryptjs'
 
 class GetAllStatisticsService {
-    async execute(user: string, password: string) {
-
-        const userTokens = await prismaClient.appConstants.findFirst({
-            select: {
-                root_access: true,
-                users: true
-            }
-        })
-        const passwordMatch = await compare(password, userTokens.root_access)
-        const userMatch = userTokens.users === user
-
-        if (passwordMatch && userMatch) {
+    async execute(user_id: string) {
+        if (user_id.length < 20) {
             try {
                 const totalUsers = await prismaClient.user.count({})
 
@@ -44,7 +34,7 @@ class GetAllStatisticsService {
                 throw new Error('GetAllStatisticsService: ' + e)
             }
         } else {
-            throw new Error('Usuário/ senha incorreto(s)')
+            throw new Error('Erro ao validade usuário, GetAllStatisticsService')
         }
     }
 }

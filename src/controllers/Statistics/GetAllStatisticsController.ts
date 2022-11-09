@@ -4,11 +4,11 @@ import { GetAllStatisticsService } from '../../services/Statistics/GetAllStatist
 
 class GetAllStatisticsController {
     async handle(req: Request, res: Response) {
-        const { user, password } = req.body
+        const user_id = req.user_id;
 
         const getAllStatisticsService = new GetAllStatisticsService()
 
-        const data = await getAllStatisticsService.execute(user, password)
+        const data = await getAllStatisticsService.execute(user_id)
 
         return res.json(data)
     }
