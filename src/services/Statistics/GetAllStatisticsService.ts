@@ -3,7 +3,7 @@ import { compare } from 'bcryptjs'
 
 class GetAllStatisticsService {
     async execute(user_id: string) {
-        if (user_id.length < 20) {
+        if (user_id.length < 7) {
             try {
                 const totalUsers = await prismaClient.user.count({})
 
