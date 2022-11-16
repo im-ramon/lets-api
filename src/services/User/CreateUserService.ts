@@ -1,6 +1,6 @@
-import express from 'express'
 import prismaClient from '../../prisma'
 import { hash } from 'bcryptjs'
+import ShortUniqueId from 'short-unique-id'
 
 interface UserRequest {
     name: string
@@ -10,10 +10,13 @@ interface UserRequest {
 class CreateUserService {
     async execute({ name, password }: UserRequest) {
 
+        const uid = new ShortUniqueId({ length: 8 });
+
         const passwordHash = await hash(password, 8)
 
         const user = await prismaClient.user.create({
             data: {
+                id: uid(),
                 name: name,
                 password: passwordHash
             },
