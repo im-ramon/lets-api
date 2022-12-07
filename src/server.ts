@@ -6,6 +6,9 @@ import { router } from './routes'
 
 const app = express()
 app.use(express.json())
+
+app.options('*', cors())
+// TESTAR ^
 app.use(cors())
 
 app.use(router)
@@ -26,4 +29,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     })
 })
 
-app.listen(21080, () => console.log("Servidor Let's! rodando na porta: 21080"))
+app.listen(21034, () => console.log("Servidor Let's! rodando na porta: 21034"))
