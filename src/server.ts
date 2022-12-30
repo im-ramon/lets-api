@@ -1,7 +1,9 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors' /* Manter sempre como 2º import */
 import cors from 'cors'
-require('dotenv/config')
 
 import { router } from './routes'
 
@@ -30,4 +32,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     })
 })
 
-app.listen(process.env.PORT, () => console.log("Servidor Let's! rodando na porta" + process.env.PORT))
+app.listen(process.env.PORT, () => console.log("Servidor Let's! rodando na porta: " + process.env.PORT))
