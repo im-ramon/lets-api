@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors' /* Manter sempre como 2º import */
 import cors from 'cors'
+import 'dotenv/config'
 
 import { router } from './routes'
 
@@ -29,4 +30,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     })
 })
 
-app.listen(21141, () => console.log("Servidor Let's! rodando na porta: 21141"))
+app.listen(process.env.PORT, () => console.log("Servidor Let's! rodando na porta" + process.env.PORT))
