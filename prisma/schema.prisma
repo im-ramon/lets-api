@@ -11,6 +11,9 @@ datasource db {
 }
 
 // Criando uma migration: npx prisma migrate dev
+// create user letsadmin with encrypted password 'dev';
+// alter user letsadmin with createdb;
+// ALTER DATABASE lets OWNER TO letsadmin;
 // create_main_tables
 
 model User {
