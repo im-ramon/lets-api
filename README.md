@@ -5,12 +5,12 @@
 
 ## Versões das ferreamentas utilizadas:
 
-| npm | node | type-script |
-| --- | --- | --- |
-| 8.8.0 | v16.16.0 | 4.8.4 |
+| npm | node | type-script | docker | docker compose |
+| --- | --- | --- | --- | --- |
+| 8.8.0 | v16.16.0 | 4.8.4 | 20.10.17 | 2.10.2 |
 
    
-## Configurações inciais
+## Configurações inciais (desenvolvimento)
 
 #### 1. Instalações dos pacotes pelo npm:
 
@@ -18,34 +18,32 @@
 npm install
 ```
 
-#### 2. Instalando o MySQL:
+#### 2. Docker:
 
 ```
-sudo apt update
+docker compose up -d
 ```
 ```
-sudo apt install mysql-server
+docker compose exec -t db /bin/bash
 ```
-
-#### 3. Configurando o MySQL:
-Para concluir a configuração, seguir o tutorial a seguir: https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04-pt
-
-#### 4. Configurar as variáveis de ambiente do Prisma:
-
 ```
-DATABASE_URL="mysql://<usuário>:<senha>@localhost:<porta_mysql>/<nome_do_banco_de_dados>"
+su postgres
 ```
-- Para ver a porta do MySQL:
 ```
-SHOW GLOBAL VARIABLES LIKE 'PORT';
+psql
+```
+```
+CREATE USER letsadmin WITH ENCRYPTED PASSWORD 'password_here';
+ALTER USER letsadmin WITH createdb;
+ALTER DATABASE lets OWNER TO letsadmin;
 ```
 
-#### 5. Configurar a JWT SECRET, no arquivo .env:
+#### 3. Configurar a JWT SECRET, no arquivo .env:
 ```
 JWT_SECRET=<secret>
 ```
 
-#### 6. Rodar as migrations em ambiente de desenvolvimento:
+#### 4. Rodar as migrations em ambiente de desenvolvimento:
 ```
 npx prisma migrate dev
 ```
