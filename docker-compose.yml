@@ -1,8 +1,9 @@
 services:
-  db: 
+  db:
     image: postgres
     environment:
       - POSTGRES_PASSWORD=dev
       - POSTGRES_DB=lets
     ports:
       - 5432:5432
+    restart: always
